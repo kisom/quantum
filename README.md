@@ -1,6 +1,6 @@
 # QUANTUM
 
-This is my repo of solutions to the programming drills from the book []Quantum
+This is my repo of solutions to the programming drills from the book [Quantum
 Computing for Computer Scientists](https://www.cambridge.org/core/books/quantum-computing-for-computer-scientists/8AEA723BEE5CC9F5C03FDD4BA850C711).
 
 Modules:
