@@ -78,11 +78,37 @@ func NewFromInts(m [][]int) *Mat {
 	return mat
 }
 
+// Transpose computes the transpose of the matrix, returning a new matrix.
 func (mat *Mat) Transpose() *Mat {
 	matt := New(mat.Dimensions())
 	for k := range mat.m {
 		for j := range mat.m[k] {
-			matt.m[j][k] = matt.m[k][j]
+			matt.m[j][k] = mat.m[k][j]
 		}
 	}
+
+	return matt
+}
+
+func (mat *Mat) At(row, col int) complex128 {
+	return mat.m[col][row]
+}
+
+// Eq? returns true if the two
+func (mat *Mat) Eq(omat *Mat) bool {
+	rows, cols := mat.Dimensions()
+	orows, ocols := mat.Dimensions()
+	if rows != orows || cols != ocols {
+		return false
+	}
+
+	for k := 0; k < cols; k++ {
+		for j := 0; j < rows; j++ {
+			if mat.At(j, k) != omat.At(j, k) {
+				return false
+			}
+		}
+	}
+
+	return true
 }
