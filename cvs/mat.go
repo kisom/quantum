@@ -112,3 +112,32 @@ func (mat *Mat) Eq(omat *Mat) bool {
 
 	return true
 }
+
+// Add two matrices together.
+func (mat *Mat) Add(omat *Mat) *Mat {
+	rows, cols := mat.Dimensions()
+	orows, ocols := mat.Dimensions()
+	if rows != orows || cols != ocols {
+		panic("mat: can only matrices of the same dimensionality")
+	}
+	nmat := New(mat.Dimensions())
+	for col := range mat.m {
+		for row := range mat.m[col] {
+			nmat.m[col][row] = mat.m[col][row] + omat.m[col][row]
+		}
+	}
+
+	return nmat
+}
+
+// AddScalar adds c to every element in the matrix.
+func (mat *Mat) AddScalar(c complex128) *Mat {
+	nmat := New(mat.Dimensions())
+	for col := range mat.m {
+		for row := range mat.m[col] {
+			nmat.m[col][row] = mat.m[col][row] + c
+		}
+	}
+
+	return nmat
+}
